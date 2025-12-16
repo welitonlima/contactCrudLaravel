@@ -40,6 +40,9 @@
                                                 <td>{{ $contact->email }}</td>
                                                 <td class="text-end pe-3">
                                                     <div class="btn-group btn-group-sm" role="group">
+                                                        <a href="{{ route('contacts.show', $contact) }}" class="btn btn-outline-info" title="View">
+                                                            <i class="bi bi-eye"></i>
+                                                        </a>
                                                         <button type="button" class="btn btn-outline-primary" disabled>
                                                             <i class="bi bi-pencil"></i>
                                                         </button>

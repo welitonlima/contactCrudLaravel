@@ -28,4 +28,9 @@ class ContactController extends Controller
         return redirect()->route('contacts.index')
             ->with('success', 'Contact created successfully.');
     }
+
+    public function show(Contact $contact): View
+    {
+        return view('contacts.show', compact('contact'));
+    }
 }
