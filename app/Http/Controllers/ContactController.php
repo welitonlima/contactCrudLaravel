@@ -47,4 +47,12 @@ class ContactController extends Controller
         return redirect()->route('contacts.show', $contact)
             ->with('success', 'Contact updated successfully.');
     }
+
+    public function destroy(Contact $contact): RedirectResponse
+    {
+        $contact->delete();
+
+        return redirect()->route('contacts.index')
+            ->with('success', 'Contact deleted successfully.');
+    }
 }

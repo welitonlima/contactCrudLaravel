@@ -46,7 +46,7 @@
                                                         <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-outline-primary" title="Edit">
                                                             <i class="bi bi-pencil"></i>
                                                         </a>
-                                                        <button type="button" class="btn btn-outline-danger" disabled>
+                                                        <button type="button" class="btn btn-outline-danger" title="Delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-contact-id="{{ $contact->id }}" data-contact-name="{{ $contact->name }}">
                                                             <i class="bi bi-trash"></i>
                                                         </button>
                                                     </div>
@@ -66,8 +66,49 @@
                         </div>
                     </div>
                 @endif
-            </div>
-        </div>
-    </div>
-@endsection
+               </div>
+           </div>
+       </div>
+
+       <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+           <div class="modal-dialog modal-dialog-centered">
+               <div class="modal-content">
+                   <div class="modal-header bg-danger text-white">
+                       <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                       <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                   </div>
+                   <div class="modal-body">
+                       <p>Are you sure you want to delete this contact?</p>
+                       <p class="fw-bold mb-0" id="contactName"></p>
+                   </div>
+                   <div class="modal-footer">
+                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                       <form id="deleteForm" method="POST" style="display: inline;">
+                           @csrf
+                           @method('DELETE')
+                           <button type="submit" class="btn btn-danger">Delete</button>
+                       </form>
+                   </div>
+               </div>
+           </div>
+       </div>
+   @endsection
+
+   @push('scripts')
+       <script>
+           document.addEventListener('DOMContentLoaded', function() {
+               const deleteModal = document.getElementById('deleteModal');
+               deleteModal.addEventListener('show.bs.modal', function(event) {
+                   const button = event.relatedTarget;
+                   const contactId = button.getAttribute('data-contact-id');
+                   const contactName = button.getAttribute('data-contact-name');
+                   
+                   const form = document.getElementById('deleteForm');
+                   form.action = '/contacts/' + contactId;
+                   
+                   document.getElementById('contactName').textContent = contactName;
+               });
+           });
+       </script>
+   @endpush
 
