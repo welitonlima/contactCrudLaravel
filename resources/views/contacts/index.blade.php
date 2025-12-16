@@ -43,9 +43,9 @@
                                                         <a href="{{ route('contacts.show', $contact) }}" class="btn btn-outline-info" title="View">
                                                             <i class="bi bi-eye"></i>
                                                         </a>
-                                                        <button type="button" class="btn btn-outline-primary" disabled>
+                                                        <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-outline-primary" title="Edit">
                                                             <i class="bi bi-pencil"></i>
-                                                        </button>
+                                                        </a>
                                                         <button type="button" class="btn btn-outline-danger" disabled>
                                                             <i class="bi bi-trash"></i>
                                                         </button>

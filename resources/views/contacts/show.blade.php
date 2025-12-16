@@ -10,6 +10,13 @@
                     <h1 class="h3 mb-0">Contact Details</h1>
                 </div>
 
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 <div class="card shadow-sm">
                     <div class="card-body p-4">
                         <div class="row mb-3">
@@ -59,6 +66,9 @@
                         <div class="d-flex justify-content-between">
                             <a href="{{ route('contacts.index') }}" class="btn btn-secondary">
                                 <i class="bi bi-arrow-left"></i> Back to List
+                            </a>
+                            <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-primary">
+                                <i class="bi bi-pencil"></i> Edit Contact
                             </a>
                         </div>
                     </div>
